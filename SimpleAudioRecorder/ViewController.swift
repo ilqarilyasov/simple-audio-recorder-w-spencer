@@ -9,18 +9,33 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController, AVAudioPlayerDelegate {
+class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
-
-    @IBAction func play(_ sender: Any) {
+    
+    @IBAction func record(_ sender: Any) {
         
+        guard !isRecording else {
+            recorder?.stop()
+            return
+        }
+        
+        do {
+            let format = AVAudioFormat(standardFormatWithSampleRate: 44100.0, channels: 2)! // Channells 2 is stereo. 44100.0 common sample rate for mp3
+            recorder = try AVAudioRecorder(url: newRecordingURL(), format: format)
+            recorder?.delegate = self
+            recorder?.record()
+        } catch {
+            NSLog("Unable to start recording: \(error.localizedDescription)")
+        }
+    }
+    
+    @IBAction func play(_ sender: Any) {
         defer { updateButton() }
         
-        guard let audioURL = Bundle.main.url(forResource: "empire-of-the-sun-walking-on-a-dream", withExtension: "mp3") else { return }
+        guard let audioURL = Bundle.main.url(forResource: "hi-okay", withExtension: "mp3") else { return }
         
         guard !isPlaying else {
             player?.pause()
@@ -34,26 +49,42 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
         
         do {
             player = try AVAudioPlayer(contentsOf: audioURL)
+            player?.delegate = self
             player?.play()
         } catch {
             NSLog("Unable to play audio: \(error.localizedDescription)")
         }
     }
     
+    // Delegate method
+    
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         self.player = nil
         updateButton()
     }
     
-    func updateButton() {
+    private func updateButton() {
         let playButtonTitle = isPlaying ? "Stop" : "Play"
         playButton.setTitle(playButtonTitle, for: .normal)
     }
     
+    private func newRecordingURL() -> URL {
+        let documentsDir = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true)
+        return documentsDir.appendingPathComponent(UUID().uuidString).appendingPathExtension("caf")
+    }
+    
+    private var recorder: AVAudioRecorder?
     private var player: AVAudioPlayer?
+    
     private var isPlaying: Bool {
         return player?.isPlaying ?? false
     }
+    
+    private var isRecording: Bool {
+        return recorder?.isRecording ?? false
+    }
+    
+    @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
 }
 

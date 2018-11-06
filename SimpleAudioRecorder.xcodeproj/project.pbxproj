@@ -13,6 +13,7 @@
 		82286C3F219203E90027DD22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 82286C3E219203E90027DD22 /* Assets.xcassets */; };
 		82286C42219203E90027DD22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 82286C40219203E90027DD22 /* LaunchScreen.storyboard */; };
 		82286C4A219204CB0027DD22 /* empire-of-the-sun-walking-on-a-dream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82286C49219204CB0027DD22 /* empire-of-the-sun-walking-on-a-dream.mp3 */; };
+		82286C4C21920F140027DD22 /* hi-okay.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 82286C4B21920F140027DD22 /* hi-okay.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		82286C41219203E90027DD22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		82286C43219203E90027DD22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		82286C49219204CB0027DD22 /* empire-of-the-sun-walking-on-a-dream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "empire-of-the-sun-walking-on-a-dream.mp3"; sourceTree = "<group>"; };
+		82286C4B21920F140027DD22 /* hi-okay.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "hi-okay.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				82286C3B219203E80027DD22 /* Main.storyboard */,
 				82286C3E219203E90027DD22 /* Assets.xcassets */,
 				82286C49219204CB0027DD22 /* empire-of-the-sun-walking-on-a-dream.mp3 */,
+				82286C4B21920F140027DD22 /* hi-okay.mp3 */,
 				82286C40219203E90027DD22 /* LaunchScreen.storyboard */,
 				82286C43219203E90027DD22 /* Info.plist */,
 			);
@@ -128,6 +131,7 @@
 				82286C4A219204CB0027DD22 /* empire-of-the-sun-walking-on-a-dream.mp3 in Resources */,
 				82286C42219203E90027DD22 /* LaunchScreen.storyboard in Resources */,
 				82286C3F219203E90027DD22 /* Assets.xcassets in Resources */,
+				82286C4C21920F140027DD22 /* hi-okay.mp3 in Resources */,
 				82286C3D219203E80027DD22 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

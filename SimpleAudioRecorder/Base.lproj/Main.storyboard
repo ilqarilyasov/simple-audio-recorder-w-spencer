@@ -19,15 +19,26 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sz-Qh-0Cf">
-                                <rect key="frame" x="172.5" y="318.5" width="30" height="30"/>
+                                <rect key="frame" x="170" y="315.5" width="35" height="36"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
                                 <state key="normal" title="Play"/>
                                 <connections>
                                     <action selector="play:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ec7-XG-Fta"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="142-Al-lmV">
+                                <rect key="frame" x="158.5" y="271.5" width="58" height="36"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                <state key="normal" title="Record"/>
+                                <connections>
+                                    <action selector="record:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yXh-0q-uI9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="3sz-Qh-0Cf" firstAttribute="top" secondItem="142-Al-lmV" secondAttribute="bottom" constant="8" id="HcA-1E-pL5"/>
+                            <constraint firstItem="142-Al-lmV" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="VFF-IE-25A"/>
                             <constraint firstItem="3sz-Qh-0Cf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dtj-UF-yzV"/>
                             <constraint firstItem="3sz-Qh-0Cf" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="i3R-CK-By6"/>
                         </constraints>
@@ -35,6 +46,7 @@
                     </view>
                     <connections>
                         <outlet property="playButton" destination="3sz-Qh-0Cf" id="kfC-QF-MSD"/>
+                        <outlet property="recordButton" destination="142-Al-lmV" id="CQQ-oD-BHG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
