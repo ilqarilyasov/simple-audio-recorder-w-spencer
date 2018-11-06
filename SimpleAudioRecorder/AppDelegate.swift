@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +17,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let session = AVAudioSession.sharedInstance()
+        
+        session.requestRecordPermission { (granted) in
+            guard granted else {
+                NSLog("Please give the application permission to record in Settings")
+                return
+            }
+            
+            do {
+                try session.setCategory(.playAndRecord, mode: .default, options: [])
+                try session.setActive(true, options: [])
+            } catch {
+                NSLog("Error setting AVAudioSession: \(error.localizedDescription)")
+            }
+        }
+        
         return true
     }
 

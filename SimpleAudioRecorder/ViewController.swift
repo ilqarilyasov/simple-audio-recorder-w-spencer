@@ -16,6 +16,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     }
     
     @IBAction func record(_ sender: Any) {
+        defer { updateButton() }
         
         guard !isRecording else {
             recorder?.stop()
@@ -35,7 +36,8 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     @IBAction func play(_ sender: Any) {
         defer { updateButton() }
         
-        guard let audioURL = Bundle.main.url(forResource: "hi-okay", withExtension: "mp3") else { return }
+//        guard let audioURL = Bundle.main.url(forResource: "hi-okay", withExtension: "mp3") else { return }
+        guard let audioURL = recordingURL else { return }
         
         guard !isPlaying else {
             player?.pause()
@@ -56,7 +58,15 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
         }
     }
     
-    // Delegate method
+    // AVAudioRecorderDelegate
+    
+    func audioRecorderDidFinishRecording(_ recorder: AVAudioRecorder, successfully flag: Bool) {
+        recordingURL = recorder.url
+        self.recorder = nil
+        updateButton()
+    }
+    
+    // AVAudioPlayerDelegate
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         self.player = nil
@@ -64,8 +74,11 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     }
     
     private func updateButton() {
-        let playButtonTitle = isPlaying ? "Stop" : "Play"
+        let playButtonTitle = isPlaying ? "Pause" : "Play"
         playButton.setTitle(playButtonTitle, for: .normal)
+        
+        let recordButtonTitle = isRecording ? "Stop" : "Record"
+        recordButton.setTitle(recordButtonTitle, for: .normal)
     }
     
     private func newRecordingURL() -> URL {
@@ -75,6 +88,7 @@ class ViewController: UIViewController, AVAudioPlayerDelegate, AVAudioRecorderDe
     
     private var recorder: AVAudioRecorder?
     private var player: AVAudioPlayer?
+    private var recordingURL: URL?
     
     private var isPlaying: Bool {
         return player?.isPlaying ?? false
